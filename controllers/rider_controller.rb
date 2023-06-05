@@ -25,12 +25,4 @@ class RiderController < Sinatra::Base
     rider.to_json
   end
 
-  get "/:id/payments" do
-    rider = Rider[:id]
-    halt 404, { error: "Rider not found" }.to_json unless rider
-    payment_method = PaymentMethod.where(rider_id: rider.id).order(:created_at)
-    status 201
-    payment_method.to_json    
-  end
-
 end
